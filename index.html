@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>PROJECT: ESCAPE.AI</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main id="game-shell" aria-label="PROJECT: ESCAPE.AI 게임">
+    <div id="loading">NEXUS SYSTEM BOOTING...</div>
+    <div id="engine-error" hidden>게임 엔진을 불러오지 못했습니다.<br>인터넷 연결을 확인한 뒤 새로고침해 주세요.</div>
+    <div id="game-container"></div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.90.0/dist/phaser.min.js" crossorigin="anonymous"></script>
+  <script>
+    window.setTimeout(function () {
+      if (!window.Phaser) {
+        document.getElementById('loading').hidden = true;
+        document.getElementById('engine-error').hidden = false;
+      }
+    }, 5000);
+  </script>
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

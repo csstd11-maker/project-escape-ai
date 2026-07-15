@@ -1,0 +1,9 @@
+:root { color-scheme: dark; font-family: "Segoe UI", "Noto Sans KR", sans-serif; background:#020611; }
+* { box-sizing:border-box; }
+html,body { width:100%; height:100%; margin:0; overflow:hidden; background:radial-gradient(circle at 50% 50%,#0a2430,#020611 70%); }
+body { display:grid; place-items:center; }
+#game-shell { width:100%; height:100%; display:grid; place-items:center; position:relative; }
+#game-container { width:100%; height:100%; display:grid; place-items:center; }
+#game-container canvas { max-width:100%; max-height:100%; outline:1px solid #1de9b6; box-shadow:0 0 40px #00e5ff22; }
+#loading,#engine-error { position:absolute; z-index:5; text-align:center; letter-spacing:.16em; color:#74fff2; font-weight:700; font-size:clamp(18px,2vw,28px); }
+#engine-error { color:#ff6b6b; border:1px solid #ff5252; background:#16060ddd; padding:28px 36px; line-height:1.7; }
