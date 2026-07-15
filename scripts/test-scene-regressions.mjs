@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises';
 
 globalThis.Phaser={Scene:class {}};
 const { UpgradeScene }=await import('../js/scenes/UpgradeScene.js?scene-regression');
+const { GameOverScene }=await import('../js/scenes/GameOverScene.js?scene-regression');
 const { gameSession }=await import('../js/gameSession.js');
 
 const makeScene=()=>{
@@ -31,6 +32,11 @@ assert.equal(second.chosen,false,'두 번째 업그레이드 화면에서 선택
 second.choose('throwAssist');
 assert.equal(gameSession.upgradeCounts.throwAssist,1,'두 번째 업그레이드도 적용되어야 합니다');
 assert.equal(second.started,'ServerScene','두 번째 선택 후 다음 Stage로 이동해야 합니다');
+
+const gameOver=new GameOverScene();
+gameOver.clicked=true;
+gameOver.init({stage:'SecurityScene'});
+assert.equal(gameOver.clicked,false,'두 번째 사망 화면에서도 버튼 잠금이 초기화되어야 합니다');
 
 const baseScene=await readFile(new URL('../js/scenes/BaseGameScene.js',import.meta.url),'utf8');
 const cleanupLine=baseScene.split(/\r?\n/).find(line=>line.includes('cleanup(){'));
