@@ -2,5 +2,5 @@
   "name": "project-escape-ai",
   "private": true,
   "type": "module",
-  "scripts": { "check": "node scripts/check-project.mjs && node scripts/test-logic.mjs" }
+  "scripts": { "check": "node scripts/check-project.mjs && node scripts/test-logic.mjs && node scripts/test-scene-regressions.mjs" }
 }
