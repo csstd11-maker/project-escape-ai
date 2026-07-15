@@ -42,5 +42,5 @@ export class BaseGameScene extends Phaser.Scene{
   playerDied(){if(this.transitioning)return;this.transitioning=true;gameSession.deathCount++;audioManager.playSfx('gameover');this.projectiles.clear(true,true);this.time.delayedCall(250,()=>this.scene.start('GameOverScene',{stage:this.stageKey}));}
   openPause(){if(this.scene.isActive('PauseScene')||this.transitioning)return;this.player.body.setVelocity(0);this.scene.pause();this.scene.launch('PauseScene',{pausedSceneKey:this.stageKey});}
   onFocusLost(){if(this.scene.isActive()&&!this.scene.isPaused()&&!this.logOpen&&!this.transitioning)this.openPause();}
-  cleanup(){this.game.events.off(Phaser.Core.Events.BLUR,this.onFocusLost,this);this.input?.off('pointerdown',this.pointerHandler);this.inputBindings?.forEach(([k,cb])=>k.off('down',cb));this.keys?.pause?.off('down',this.pauseHandler);this.projectiles?.clear(true,true);this.effects?.clear();}
+  cleanup(){this.game.events.off(Phaser.Core.Events.BLUR,this.onFocusLost,this);this.input?.off('pointerdown',this.pointerHandler);this.inputBindings?.forEach(([k,cb])=>k.off('down',cb));this.keys?.pause?.off('down',this.pauseHandler);this.effects?.clear();}
 }

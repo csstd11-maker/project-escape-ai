@@ -19,7 +19,7 @@ import { PauseScene } from './scenes/PauseScene.js';
 
 const errorBox=document.getElementById('engine-error');
 function fatal(message){if(errorBox){errorBox.hidden=false;errorBox.innerHTML=`게임을 시작하지 못했습니다.<br>${message}<br>새로고침해 주세요.`;}document.getElementById('loading')?.setAttribute('hidden','');}
-window.addEventListener('error',event=>fatal(event.message||'알 수 없는 오류'));
+window.addEventListener('error',event=>{console.error('GAME_FATAL',event.error?.stack||event.message);fatal(event.error?.message||event.message||'알 수 없는 오류');});
 window.addEventListener('unhandledrejection',event=>fatal(event.reason?.message||'모듈 로딩 오류'));
 if(!window.Phaser)fatal('게임 엔진을 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.');
 else{
