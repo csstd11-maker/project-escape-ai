@@ -1,6 +1,0 @@
-{
-  "name": "project-escape-ai",
-  "private": true,
-  "type": "module",
-  "scripts": { "check": "node scripts/check-project.mjs && node scripts/test-logic.mjs" }
-}
