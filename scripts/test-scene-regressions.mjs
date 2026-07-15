@@ -42,4 +42,7 @@ const baseScene=await readFile(new URL('../js/scenes/BaseGameScene.js',import.me
 const cleanupLine=baseScene.split(/\r?\n/).find(line=>line.includes('cleanup(){'));
 assert.ok(cleanupLine,'Scene 종료 정리 함수가 있어야 합니다');
 assert.doesNotMatch(cleanupLine,/projectiles\??\.clear/,'Scene 종료 시 Phaser가 정리한 투사체 그룹을 다시 비우면 안 됩니다');
-console.log('Scene 회귀 검사 통과: 업그레이드 재진입·중복 선택·Stage 이동·종료 정리');
+assert.match(cleanupLine,/stageTimers\?\.forEach/,'Stage 반복 타이머는 Scene 종료 때 해제해야 합니다');
+const securityScene=await readFile(new URL('../js/scenes/SecurityScene.js',import.meta.url),'utf8');
+assert.match(securityScene,/if\(!this\.sys\.isActive\(\)\|\|laser\.disabled\)return/,'레이저 반복 콜백은 종료된 Scene에서 실행되면 안 됩니다');
+console.log('Scene 회귀 검사 통과: 업그레이드 재진입·중복 선택·Stage 이동·종료 정리·레이저 타이머 해제');
